@@ -73,7 +73,7 @@ type GeocodeResponse = FSharp.Data.JsonProvider<"""{
     }""">
 
 let latLng (address:string) =
-    let fetch = sprintf @"http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" (address.Replace(" ","+") + ",NY")
+    let fetch = sprintf @"http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" (address.Replace(" ","+"))
     use resp = System.Net.WebRequest.Create(fetch).GetResponse().GetResponseStream()
     System.Threading.Thread.Sleep(100)
     use reader = new System.IO.StreamReader(resp)
@@ -96,7 +96,7 @@ let file = System.IO.File.OpenText(projectPath + "venues.csv").ReadToEnd().Trim(
 
 let itemsArray = file.Split([|'\n'|]) |> Array.map (fun i -> let arr = i.Trim().Split([|','|])
                                                              { Name = arr.[0];
-                                                               Address = arr.[1];
+                                                               Address = arr.[1] + ", England";
                                                                Description = arr.[2]
                                                                LatLng = latLng (arr.[1])
                                                                Colour = "red"})
@@ -106,8 +106,8 @@ let jsStart = "var map;
 function initialize() {
 
   var mapOptions = {
-    zoom: 13,
-    center: new google.maps.LatLng(40.722283, -73.98747),
+    zoom: 9,
+    center: new google.maps.LatLng(51.488, -0.011),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
