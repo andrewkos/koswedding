@@ -62,6 +62,42 @@ function initialize() {
           google.maps.event.addListener(marker2, 'mouseout', function () {
               window2.close();
           });
+            
+          var latLng3 = new google.maps.LatLng(51.466908, -0.2161665);
+          var string3 = '<h1>Star and Garter</h1><p>Nice Pub';
+          var window3 = new google.maps.InfoWindow({
+              content: string3
+          });
+          var marker3 = new google.maps.Marker({
+              position: latLng3,
+              map: map,
+              title: 'Star and Garter',
+              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          });
+          google.maps.event.addListener(marker3, 'mouseover', function () {
+              window3.open(map, marker3);
+          });
+          google.maps.event.addListener(marker3, 'mouseout', function () {
+              window3.close();
+          });
+            
+          var latLng4 = new google.maps.LatLng(51.5060699, -0.0275537);
+          var string4 = '<h1>Battery</h1><p>Entertaining';
+          var window4 = new google.maps.InfoWindow({
+              content: string4
+          });
+          var marker4 = new google.maps.Marker({
+              position: latLng4,
+              map: map,
+              title: 'Battery',
+              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          });
+          google.maps.event.addListener(marker4, 'mouseover', function () {
+              window4.open(map, marker4);
+          });
+          google.maps.event.addListener(marker4, 'mouseout', function () {
+              window4.close();
+          });
         
 }
 
